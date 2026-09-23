@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yagod Rewards — Loja</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header>
+  <div class="brand"><div class="avatar"><i></i></div></div>
+  <nav class="mainnav">
+    <a href="index.html">Home</a>
+    <a href="jogos.html">Jogos</a>
+    <a href="sorteios.html">Sorteios</a>
+    <a href="loja.html" class="active">Loja</a>
+    <a href="wiki.html">Wiki</a>
+  </nav>
+  <div class="stats">
+    <div class="stat">🪙 <span id="tyCount">0</span></div>
+    <div class="stat">🔷 <span id="tokCount">0</span></div>
+    <div class="stat" id="openMonthly" style="cursor:pointer">⭐ Nv <span id="lvlCount">1</span></div>
+  </div>
+</header>
+
+<main>
+  <h2 class="pagetitle">Loja</h2>
+  <p class="pagesub">Utilidades e itens adquiridos com Tokens ou Yagod Coins.</p>
+
+  <h2 class="section" style="margin-top:0">Exchange</h2>
+  <div class="grid3">
+    <div class="shopcard">
+      <div class="ico">🔄</div>
+      <div class="name">1 Yagod Coin → 1000 Tokens</div>
+      <button class="cta" id="exchangeBtn" style="margin-top:12px;width:100%">Trocar agora</button>
+    </div>
+  </div>
+
+  <h2 class="section">Boost de XP</h2>
+  <div class="grid3">
+    <div class="shopcard"><div class="ico">📈</div><div class="name">Boost XP +50%</div><div class="small">Duração: 2h</div><div class="price">500 Tokens</div><button class="cta buy" data-cost="500" data-cur="tok" style="width:100%">Ativar Boost</button></div>
+    <div class="shopcard"><div class="ico">📈</div><div class="name">Boost XP +50%</div><div class="small">Duração: 10h</div><div class="price">3000 Tokens</div><button class="cta buy" data-cost="3000" data-cur="tok" style="width:100%">Ativar Boost</button></div>
+  </div>
+
+  <h2 class="section">Chaves</h2>
+  <div class="grid3">
+    <div class="shopcard"><div class="ico">🗝️</div><div class="name">Chave de Ferro</div><div class="price">1 Yagod Coin</div><button class="cta buy" data-cost="1" data-cur="ty" style="width:100%">Comprar Chave</button></div>
+    <div class="shopcard"><div class="ico">🗝️</div><div class="name">Chave de Rubi</div><div class="price">2 Yagod Coins</div><button class="cta buy" data-cost="2" data-cur="ty" style="width:100%">Comprar Chave</button></div>
+    <div class="shopcard"><div class="ico">🗝️</div><div class="name">Chave Dracônica</div><div class="price">4 Yagod Coins</div><button class="cta buy" data-cost="4" data-cur="ty" style="width:100%">Comprar Chave</button></div>
+  </div>
+
+  <h2 class="section">Baús</h2>
+  <div class="grid3">
+    <div class="shopcard"><div class="ico">📦</div><div class="name">Baú Elite</div><div class="small">Nível mínimo: 100</div><div class="price">2 Yagod Coins</div><button class="cta buy" data-cost="2" data-cur="ty" style="width:100%">Comprar Baú</button></div>
+    <div class="shopcard"><div class="ico">🎒</div><div class="name">Baú Heroico</div><div class="small">Requer Nível 150</div><div class="price">4 Yagod Coins</div><button class="cta ghost" disabled style="width:100%">Requer Nível 150</button></div>
+    <div class="shopcard"><div class="ico">🪵</div><div class="name">Baú Reforçado</div><div class="small">Nível mínimo: 50</div><div class="price">1 Yagod Coin</div><button class="cta buy" data-cost="1" data-cur="ty" style="width:100%">Comprar Baú</button></div>
+  </div>
+
+  <h2 class="section">Itens</h2>
+  <div class="grid3">
+    <div class="shopcard"><div class="ico">🗡️</div><div class="name">Obelisk</div><div class="price">100 Tokens</div><button class="cta buy" data-cost="100" data-cur="tok" style="width:100%">Comprar Item</button></div>
+  </div>
+</main>
+
+<footer>Yagod Rewards — protótipo, dados salvos localmente no navegador</footer>
+
+<div class="modalbg" id="modalBg">
+  <div class="modal">
+    <button class="closeb" id="closeModal">×</button>
+    <h3>Recompensa Mensal</h3>
+    <div class="streakbox">
+      <div><div class="small">Streak atual</div><b id="streakVal">0 dias</b></div>
+      <button class="cta" id="collectBtn">Coletar hoje</button>
+    </div>
+    <div class="cal" id="calGrid"></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="assets/app.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  document.getElementById('exchangeBtn').addEventListener('click', ()=>{
+    const st = YGD.state;
+    if(st.ty < 1){ YGD.toast('Você precisa de 1 Yagod Coin'); return; }
+    st.ty -= 1; st.tok += 1000;
+    YGD.save(); YGD.renderHeader();
+    YGD.toast('Trocado! +1000 Tokens');
+  });
+
+  document.querySelectorAll('.buy').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const st = YGD.state;
+      const cost = +btn.dataset.cost;
+      const cur = btn.dataset.cur;
+      const bal = cur === 'ty' ? st.ty : st.tok;
+      if(bal < cost){ YGD.toast('Saldo insuficiente'); return; }
+      if(cur === 'ty') st.ty -= cost; else st.tok -= cost;
+      YGD.save(); YGD.renderHeader();
+      YGD.toast('Compra realizada!');
+    });
+  });
+});
+</script>
+</body>
+</html>

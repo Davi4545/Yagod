@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yagod Rewards — Tingo</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header>
+  <div class="brand"><div class="avatar"><i></i></div></div>
+  <nav class="mainnav">
+    <a href="index.html">Home</a>
+    <a href="jogos.html" class="active">Jogos</a>
+    <a href="sorteios.html">Sorteios</a>
+    <a href="loja.html">Loja</a>
+    <a href="wiki.html">Wiki</a>
+  </nav>
+  <div class="stats">
+    <div class="stat">🪙 <span id="tyCount">0</span></div>
+    <div class="stat">🔷 <span id="tokCount">0</span></div>
+    <div class="stat" id="openMonthly" style="cursor:pointer">⭐ Nv <span id="lvlCount">1</span></div>
+  </div>
+</header>
+
+<main>
+  <div style="display:flex;gap:22px;flex-wrap:wrap">
+    <div style="flex:1;min-width:280px;display:flex;flex-direction:column;gap:16px">
+      <div class="card">
+        <div class="tagrow" style="justify-content:center"><span class="tag">Premium</span></div>
+        <div style="font-weight:700;margin-bottom:4px">Tingo Automático</div>
+        <div class="small">Cartelas geradas e cartela cheia resgatada automaticamente.</div>
+        <div style="margin-top:10px;color:var(--green);font-weight:700;font-size:13px">● Auto ativo</div>
+      </div>
+
+      <div class="card" style="text-align:left">
+        <div style="text-align:center;color:var(--muted);font-size:12px;letter-spacing:1px;margin-bottom:12px">TOP 10 — RANKING SEMANAL</div>
+        <div class="rank" id="tingoRank"></div>
+      </div>
+    </div>
+
+    <div style="flex:2;min-width:280px" class="card">
+      <div style="color:var(--muted);font-size:12px;letter-spacing:1px">AGUARDANDO O PRÓXIMO LOBBY</div>
+      <h1 style="font-size:42px;letter-spacing:6px;margin:20px 0">T·I·N·G·O</h1>
+      <p class="small">O lobby abre quando a live começa. Fique de olho no chat — a cartela é gerada aqui.</p>
+    </div>
+  </div>
+</main>
+
+<footer>Yagod Rewards — protótipo, dados salvos localmente no navegador</footer>
+
+<div class="modalbg" id="modalBg">
+  <div class="modal">
+    <button class="closeb" id="closeModal">×</button>
+    <h3>Recompensa Mensal</h3>
+    <div class="streakbox">
+      <div><div class="small">Streak atual</div><b id="streakVal">0 dias</b></div>
+      <button class="cta" id="collectBtn">Coletar hoje</button>
+    </div>
+    <div class="cal" id="calGrid"></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="assets/app.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  const wrap = document.getElementById('tingoRank');
+  YGD.RANKING.forEach(r=>{
+    const div = document.createElement('div');
+    div.className = 'rankrow';
+    div.innerHTML = `<span class="pos">${r.pos}º</span><span class="name">${r.ic} ${r.name}</span><span class="lvl">${(500-r.pos*15)} pts</span>`;
+    wrap.appendChild(div);
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yagod Rewards — Jogos</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header>
+  <div class="brand"><div class="avatar"><i></i></div></div>
+  <nav class="mainnav">
+    <a href="index.html">Home</a>
+    <a href="jogos.html" class="active">Jogos</a>
+    <a href="sorteios.html">Sorteios</a>
+    <a href="loja.html">Loja</a>
+    <a href="wiki.html">Wiki</a>
+  </nav>
+  <div class="stats">
+    <div class="stat">🪙 <span id="tyCount">0</span></div>
+    <div class="stat">🔷 <span id="tokCount">0</span></div>
+    <div class="stat" id="openMonthly" style="cursor:pointer">⭐ Nv <span id="lvlCount">1</span></div>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <h2 class="pagetitle">Jogos</h2>
+    <p class="pagesub">Escolha um jogo, participe das partidas ao vivo e acumule recompensas.</p>
+  </div>
+
+  <h2 class="section" style="margin-top:0">Destaque</h2>
+  <div class="gamecard" style="max-width:520px;margin:0 auto 30px;text-align:center">
+    <div class="tagrow" style="justify-content:center"><span class="tag">Destaque</span></div>
+    <div class="ico">⚔️</div>
+    <div class="name" style="font-size:20px">Yagod — Modo Aventura</div>
+    <div class="small">Jogue Yagod diretamente no navegador.</div>
+    <a href="tingo.html"><button class="cta" style="margin-top:14px">Acessar</button></a>
+  </div>
+
+  <h2 class="section">Todos os jogos</h2>
+  <div class="grid3">
+    <div class="gamecard">
+      <div class="tagrow"><span class="tag live">Ao vivo</span></div>
+      <div class="ico">🎲</div>
+      <div class="name">Tingo</div>
+      <div class="small">Participe do Tingo ao vivo e ganhe prêmios.</div>
+      <a href="tingo.html"><button class="cta" style="margin-top:12px;width:100%">Jogar</button></a>
+    </div>
+    <div class="gamecard">
+      <div class="tagrow"><span class="tag">Semanal</span></div>
+      <div class="ico">🏆</div>
+      <div class="name">Corrida XP</div>
+      <div class="small">Competição semanal de XP com prêmios em Yagod Coins.</div>
+      <button class="cta ghost" style="margin-top:12px;width:100%">Jogar</button>
+    </div>
+    <div class="gamecard">
+      <div class="tagrow"><span class="tag">Novo</span></div>
+      <div class="ico">🗺️</div>
+      <div class="name">Yagod Idle</div>
+      <div class="small">Explore o mundo de Yagod em modo idle.</div>
+      <button class="cta ghost" style="margin-top:12px;width:100%">Acessar</button>
+    </div>
+  </div>
+</main>
+
+<footer>Yagod Rewards — protótipo, dados salvos localmente no navegador</footer>
+
+<div class="modalbg" id="modalBg">
+  <div class="modal">
+    <button class="closeb" id="closeModal">×</button>
+    <h3>Recompensa Mensal</h3>
+    <div class="streakbox">
+      <div><div class="small">Streak atual</div><b id="streakVal">0 dias</b></div>
+      <button class="cta" id="collectBtn">Coletar hoje</button>
+    </div>
+    <div class="cal" id="calGrid"></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

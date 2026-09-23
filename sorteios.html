@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yagod Rewards — Sorteios</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header>
+  <div class="brand"><div class="avatar"><i></i></div></div>
+  <nav class="mainnav">
+    <a href="index.html">Home</a>
+    <a href="jogos.html">Jogos</a>
+    <a href="sorteios.html" class="active">Sorteios</a>
+    <a href="loja.html">Loja</a>
+    <a href="wiki.html">Wiki</a>
+  </nav>
+  <div class="stats">
+    <div class="stat">🪙 <span id="tyCount">0</span></div>
+    <div class="stat">🔷 <span id="tokCount">0</span></div>
+    <div class="stat" id="openMonthly" style="cursor:pointer">⭐ Nv <span id="lvlCount">1</span></div>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <h2 class="pagetitle">Sorteios</h2>
+    <p class="pagesub">Jogar Yagod gera entradas — turbine com boost para aumentar suas chances.</p>
+  </div>
+
+  <div class="banner">
+    <div class="info">
+      <span style="font-size:20px">🎲</span>
+      <div>
+        <div class="title">Último sorteio realizado · há cerca de 6 horas</div>
+        <div class="sub">@Draven · 18,44% de chance · prêmio: Baú Dracônico</div>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section" style="margin-top:0">Diário</h2>
+  <div class="grid3">
+    <div class="sorteiocard">
+      <div class="badge-top"><span>DIÁRIO · GRÁTIS</span><span>Volte amanhã</span></div>
+      <div class="prizebox">📦</div>
+      <div class="name" style="text-align:center">1× Baú Yagod</div>
+      <div class="small" style="text-align:center">+10.000 XP para o vencedor</div>
+      <div class="metarow"><span>Taxa<br><b>Grátis</b></span><span>Jogadores<br><b>0/0</b></span><span>Encerra em<br><b>12h21m</b></span></div>
+    </div>
+    <div class="sorteiocard">
+      <div class="badge-top"><span>DIÁRIO</span><span>269/299</span></div>
+      <div class="prizebox">🎁</div>
+      <div class="name" style="text-align:center">1× Baú de Bronze</div>
+      <div class="small" style="text-align:center">+10.000 XP para o vencedor</div>
+      <div class="metarow"><span>Taxa<br><b>30 min</b></span><span>Chance<br><b>0,33%</b></span><span>Encerra em<br><b>11h21m</b></span></div>
+    </div>
+    <div class="sorteiocard">
+      <div class="badge-top"><span>DIÁRIO · LEVEL ≥ 50</span><span>250/280</span></div>
+      <div class="prizebox">🥈</div>
+      <div class="name" style="text-align:center">1× Baú de Prata</div>
+      <div class="small" style="text-align:center">+30.000 XP para o vencedor</div>
+      <div class="metarow"><span>Taxa<br><b>60 min</b></span><span>Chance<br><b>0,36%</b></span><span>Encerra em<br><b>11h51m</b></span></div>
+    </div>
+  </div>
+
+  <h2 class="section">Semanal</h2>
+  <div class="grid3">
+    <div class="sorteiocard">
+      <div class="badge-top"><span>SEMANAL · LEVEL ≥ 300</span><span>11/43</span></div>
+      <div class="prizebox">🏺</div>
+      <div class="name" style="text-align:center">1× Baú Ancestral</div>
+      <div class="small" style="text-align:center">+200.000 XP para o vencedor</div>
+      <div class="metarow"><span>Taxa<br><b>600 min</b></span><span>Encerra em<br><b>66h12m</b></span></div>
+    </div>
+    <div class="sorteiocard">
+      <div class="badge-top"><span>SEMANAL · LEVEL ≥ 400</span><span>3/12</span></div>
+      <div class="prizebox">🔮</div>
+      <div class="name" style="text-align:center">1× Baú Místico</div>
+      <div class="small" style="text-align:center">+300.000 XP para o vencedor</div>
+      <div class="metarow"><span>Taxa<br><b>800 min</b></span><span>Encerra em<br><b>90h13m</b></span></div>
+    </div>
+    <div class="sorteiocard">
+      <div class="badge-top"><span>SEMANAL · LEVEL ≥ 500</span><span>0/0</span></div>
+      <div class="prizebox">💎</div>
+      <div class="name" style="text-align:center">1× Baú Arcano</div>
+      <div class="small" style="text-align:center">+500.000 XP para o vencedor</div>
+      <div class="metarow"><span>Taxa<br><b>1000 min</b></span><span>Encerra em<br><b>114h14m</b></span></div>
+    </div>
+  </div>
+</main>
+
+<footer>Yagod Rewards — protótipo, dados salvos localmente no navegador</footer>
+
+<div class="modalbg" id="modalBg">
+  <div class="modal">
+    <button class="closeb" id="closeModal">×</button>
+    <h3>Recompensa Mensal</h3>
+    <div class="streakbox">
+      <div><div class="small">Streak atual</div><b id="streakVal">0 dias</b></div>
+      <button class="cta" id="collectBtn">Coletar hoje</button>
+    </div>
+    <div class="cal" id="calGrid"></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yagod Rewards — Home</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header>
+  <div class="brand"><div class="avatar"><i></i></div></div>
+  <nav class="mainnav">
+    <a href="index.html" class="active">Home</a>
+    <a href="jogos.html">Jogos</a>
+    <a href="sorteios.html">Sorteios</a>
+    <a href="loja.html">Loja</a>
+    <a href="wiki.html">Wiki</a>
+  </nav>
+  <div class="stats">
+    <div class="stat">🪙 <span id="tyCount">0</span></div>
+    <div class="stat">🔷 <span id="tokCount">0</span></div>
+    <div class="stat" id="openMonthly" style="cursor:pointer">⭐ Nv <span id="lvlCount">1</span></div>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <h1>Assista e ganhe <span>Yagod Coins</span></h1>
+    <p>Seu tempo jogando Yagod vira recompensa.</p>
+  </div>
+
+  <div class="banner">
+    <div class="info">
+      <span style="font-size:22px">🎁</span>
+      <div>
+        <div class="title" id="chestTitle">1 baú para abrir</div>
+        <div class="sub">No seu inventário, esperando você</div>
+      </div>
+    </div>
+    <button class="cta" id="openChestBtn">Abrir</button>
+  </div>
+
+  <div class="banner warn">
+    <div class="info">
+      <span style="font-size:20px">⚠️</span>
+      <div>
+        <div class="title">Sem a extensão, seu tempo não está sendo contado</div>
+        <div class="sub">Instale a extensão oficial e volte ao site para conectar — leva menos de um minuto.</div>
+      </div>
+    </div>
+    <button class="cta">Instalar extensão</button>
+  </div>
+
+  <h2 class="section">Metas de tempo assistido</h2>
+  <div class="grid3" id="goalCards"></div>
+
+  <h2 class="section">Top jogadores</h2>
+  <div class="podium">
+    <div class="p p2"><div class="badge">#2</div><div class="av">🛡️</div><b>Kael</b><div class="small">Nível 437</div></div>
+    <div class="p p1"><div class="badge">#1</div><div class="av">🐉</div><b>Draven</b><div class="small">Nível 457</div></div>
+    <div class="p p3"><div class="badge">#3</div><div class="av">🏹</div><b>Sylas</b><div class="small">Nível 400</div></div>
+  </div>
+  <div style="text-align:center;margin-top:6px">
+    <a href="ranking.html" style="color:var(--gold);font-weight:700">Ver ranking completo →</a>
+  </div>
+</main>
+
+<footer>Yagod Rewards — protótipo, dados salvos localmente no navegador</footer>
+
+<!-- modal recompensa mensal -->
+<div class="modalbg" id="modalBg">
+  <div class="modal">
+    <button class="closeb" id="closeModal">×</button>
+    <h3>Recompensa Mensal</h3>
+    <div class="streakbox">
+      <div><div class="small">Streak atual</div><b id="streakVal">0 dias</b></div>
+      <button class="cta" id="collectBtn">Coletar hoje</button>
+    </div>
+    <div class="cal" id="calGrid"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="assets/app.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  const st = YGD.state;
+
+  function renderGoals(){
+    const plats = [
+      ['twitch','Twitch','🟣', 'var(--twitch)'],
+      ['kick','Kick','🟢', 'var(--kick)'],
+      ['youtube','YouTube','🔴', 'var(--youtube)']
+    ];
+    const wrap = document.getElementById('goalCards');
+    wrap.innerHTML = '';
+    plats.forEach(([key,label,dot,color])=>{
+      const g = st.goals[key];
+      const pct = Math.min(100, Math.round(g.min/g.next*100));
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.innerHTML = `
+        <div class="plat">${label} <span class="dot ${g.min>0?'live':''}"></span></div>
+        <div class="ring" style="background:conic-gradient(${color} ${pct}%, var(--panel2) 0)"><small>PRÓXIMA: ${g.next}min</small><b>${g.min}m</b></div>
+        <button class="chestbtn">Baú ${label}</button>
+        <div class="small">Faltam ${Math.max(0,g.next-g.min)}min p/ baú</div>
+      `;
+      wrap.appendChild(div);
+    });
+  }
+
+  document.getElementById('chestTitle').textContent = st.chest + ' baú(s) para abrir';
+  renderGoals();
+
+  document.getElementById('openChestBtn').addEventListener('click', ()=>{
+    if(st.chest<=0){ YGD.toast('Nenhum baú disponível'); return; }
+    st.chest -= 1;
+    const reward = Math.floor(Math.random()*3)+1;
+    st.ty += reward;
+    document.getElementById('chestTitle').textContent = st.chest + ' baú(s) para abrir';
+    YGD.save(); YGD.renderHeader();
+    YGD.toast('Baú aberto! +'+reward+' Yagod Coins');
+  });
+});
+</script>
+</body>
+</html>

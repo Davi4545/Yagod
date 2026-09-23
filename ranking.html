@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yagod Rewards — Ranking</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header>
+  <div class="brand"><div class="avatar"><i></i></div></div>
+  <nav class="mainnav">
+    <a href="index.html" class="active">Home</a>
+    <a href="jogos.html">Jogos</a>
+    <a href="sorteios.html">Sorteios</a>
+    <a href="loja.html">Loja</a>
+    <a href="wiki.html">Wiki</a>
+  </nav>
+  <div class="stats">
+    <div class="stat">🪙 <span id="tyCount">0</span></div>
+    <div class="stat">🔷 <span id="tokCount">0</span></div>
+    <div class="stat" id="openMonthly" style="cursor:pointer">⭐ Nv <span id="lvlCount">1</span></div>
+  </div>
+</header>
+
+<main>
+  <h2 class="pagetitle">Ranking</h2>
+  <p class="pagesub">Os jogadores com mais XP acumulado em Yagod.</p>
+
+  <div class="podium">
+    <div class="p p2"><div class="badge">#2</div><div class="av">🛡️</div><b>Kael</b><div class="small">Nível 437</div></div>
+    <div class="p p1"><div class="badge">#1</div><div class="av">🐉</div><b>Draven</b><div class="small">Nível 457</div></div>
+    <div class="p p3"><div class="badge">#3</div><div class="av">🏹</div><b>Sylas</b><div class="small">Nível 400</div></div>
+  </div>
+
+  <div class="rank" id="fullRank"></div>
+</main>
+
+<footer>Yagod Rewards — protótipo, dados salvos localmente no navegador</footer>
+
+<div class="modalbg" id="modalBg">
+  <div class="modal">
+    <button class="closeb" id="closeModal">×</button>
+    <h3>Recompensa Mensal</h3>
+    <div class="streakbox">
+      <div><div class="small">Streak atual</div><b id="streakVal">0 dias</b></div>
+      <button class="cta" id="collectBtn">Coletar hoje</button>
+    </div>
+    <div class="cal" id="calGrid"></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="assets/app.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  const wrap = document.getElementById('fullRank');
+  YGD.RANKING.slice(3).forEach(r=>{
+    const div = document.createElement('div');
+    div.className = 'rankrow';
+    div.innerHTML = `<span class="pos">${r.pos}º</span><span class="name">${r.ic} ${r.name}</span><span class="lvl">Nv. ${r.lvl}</span>`;
+    wrap.appendChild(div);
+  });
+});
+</script>
+</body>
+</html>

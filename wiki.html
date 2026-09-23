@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yagod Rewards — Wiki</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header>
+  <div class="brand"><div class="avatar"><i></i></div></div>
+  <nav class="mainnav">
+    <a href="index.html">Home</a>
+    <a href="jogos.html">Jogos</a>
+    <a href="sorteios.html">Sorteios</a>
+    <a href="loja.html">Loja</a>
+    <a href="wiki.html" class="active">Wiki</a>
+  </nav>
+  <div class="stats">
+    <div class="stat">🪙 <span id="tyCount">0</span></div>
+    <div class="stat">🔷 <span id="tokCount">0</span></div>
+    <div class="stat" id="openMonthly" style="cursor:pointer">⭐ Nv <span id="lvlCount">1</span></div>
+  </div>
+</header>
+
+<main>
+  <div class="wikiwrap">
+    <nav class="wikinav" id="wikinav">
+      <a data-w="primeiros" class="active">Primeiros Passos</a>
+      <a data-w="extensao">Extensão Oficial</a>
+      <a data-w="moedas">Moedas e XP</a>
+      <a data-w="niveis">XP e Níveis</a>
+      <a data-w="recompensa">Recompensa Diária</a>
+      <a data-w="missoes">Missões Diárias</a>
+      <a data-w="watchtime">Metas de Watchtime</a>
+      <a data-w="loja">Loja</a>
+      <a data-w="baus">Baús, Chaves e Itens</a>
+    </nav>
+
+    <div class="wikicontent">
+      <div class="wikipane active" id="w-primeiros">
+        <h3>Primeiros Passos</h3>
+        <p>Entre com sua conta favorita. O site cria seu perfil com nome e avatar, e essa conta passa a ser sua identidade principal.</p>
+        <div class="callout">
+          <b>Vincular as plataformas</b> permite reconhecer assinaturas, aplicar os benefícios corretos e reunir seu progresso em um só perfil.
+        </div>
+        <ul>
+          <li><b>Kick:</b> vincule sua conta pelo botão do Perfil.</li>
+          <li><b>YouTube:</b> cole o link do seu canal e confirme os dados encontrados.</li>
+          <li><b>Extensão:</b> instale a versão oficial para contabilizar plataformas enquanto assiste.</li>
+        </ul>
+      </div>
+
+      <div class="wikipane" id="w-extensao">
+        <h3>Extensão Oficial</h3>
+        <p>A extensão oficial contabiliza o tempo assistido nas plataformas conectadas. Ela funciona em segundo plano e envia somente o progresso validado pelo site.</p>
+        <ul>
+          <li><b>Conectada:</b> está ativa e contabilizando seu tempo.</li>
+          <li><b>Parada:</b> foi encontrada, mas precisa ser reconectada.</li>
+          <li><b>Não instalada:</b> mostra o atalho para instalar a versão oficial.</li>
+        </ul>
+        <div class="callout">O tempo só é aceito durante a transmissão oficial e passa por validações automáticas. Não é necessário informar minutos manualmente.</div>
+      </div>
+
+      <div class="wikipane" id="w-moedas">
+        <h3>Moedas e XP</h3>
+        <p>O site possui duas moedas ativas e um sistema de experiência:</p>
+        <ul>
+          <li><b>Yagod Coins</b> — a moeda principal. Pode ser conquistada em recompensas e trocada na Loja.</li>
+          <li><b>Tokens</b> — moeda de utilidade para loja, boosts e troca de missões.</li>
+          <li><b>XP</b> — a experiência que define seu nível, sua posição no ranking e alguns desbloqueios.</li>
+        </ul>
+      </div>
+
+      <div class="wikipane" id="w-niveis">
+        <h3>XP e Níveis</h3>
+        <p>Seu XP total determina o nível. Você pode ganhar XP ao assistir, coletar recompensas, completar missões, participar de jogos e receber prêmios configurados no site.</p>
+        <ul>
+          <li><b>Streak:</b> cresce com seu recorde da recompensa diária e aparece separadamente no Perfil.</li>
+          <li><b>Boost de XP:</b> é temporário e pode ser adquirido na Loja.</li>
+        </ul>
+      </div>
+
+      <div class="wikipane" id="w-recompensa">
+        <h3>Recompensa Diária</h3>
+        <p>Colete a recompensa pelo presente no topo do site. O calendário funciona em um ciclo de 28 dias, e cada coleta avança para o próximo dia do ciclo.</p>
+        <ul>
+          <li>A streak registra seus dias consecutivos e influencia o multiplicador de XP.</li>
+          <li>Se perder uma coleta, o site informa quando ainda é possível recuperar.</li>
+        </ul>
+      </div>
+
+      <div class="wikipane" id="w-missoes">
+        <h3>Missões Diárias</h3>
+        <p>Todos os dias você recebe três missões. O progresso aparece no Perfil e é atualizado pelas ações realizadas no site.</p>
+        <div class="callout">
+          <b>Raridades:</b> Comum, Incomum, Raro, Épico e Lendário. Quanto maior a raridade, maior pode ser a exigência e a recompensa.
+        </div>
+      </div>
+
+      <div class="wikipane" id="w-watchtime">
+        <h3>Metas de Watchtime</h3>
+        <p>Cada plataforma tem progresso separado. Cada card da Home mostra a próxima recompensa, a barra do ciclo e quanto falta para alcançá-la.</p>
+        <ul>
+          <li>O tempo avança pelas metas em sequência e não zera à meia-noite.</li>
+          <li>Ao terminar a sequência, um novo ciclo começa e as recompensas podem ser conquistadas novamente.</li>
+        </ul>
+      </div>
+
+      <div class="wikipane" id="w-loja">
+        <h3>Loja</h3>
+        <p>A Loja reúne utilidades e itens adquiridos com Tokens ou Yagod Coins, conforme o produto.</p>
+        <ul>
+          <li>Trocas disponíveis entre recursos ativos.</li>
+          <li>Boosts temporários de XP.</li>
+          <li>Chaves, baús, itens de jogo e produtos especiais.</li>
+        </ul>
+      </div>
+
+      <div class="wikipane" id="w-baus">
+        <h3>Baús, Chaves e Itens</h3>
+        <p>Baús podem vir de metas, missões, jogos, rankings, sorteios e eventos. Eles ficam guardados no Inventário do Perfil.</p>
+        <ul>
+          <li>Abra o Inventário e escolha um tipo de baú.</li>
+          <li>Quando o baú exigir uma chave específica, tenha a quantidade necessária.</li>
+          <li>Confirme a abertura para revelar o prêmio entregue.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>Yagod Rewards — protótipo, dados salvos localmente no navegador</footer>
+
+<div class="modalbg" id="modalBg">
+  <div class="modal">
+    <button class="closeb" id="closeModal">×</button>
+    <h3>Recompensa Mensal</h3>
+    <div class="streakbox">
+      <div><div class="small">Streak atual</div><b id="streakVal">0 dias</b></div>
+      <button class="cta" id="collectBtn">Coletar hoje</button>
+    </div>
+    <div class="cal" id="calGrid"></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="assets/app.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  document.querySelectorAll('#wikinav a').forEach(a=>{
+    a.addEventListener('click', ()=>{
+      document.querySelectorAll('#wikinav a').forEach(x=>x.classList.remove('active'));
+      document.querySelectorAll('.wikipane').forEach(p=>p.classList.remove('active'));
+      a.classList.add('active');
+      document.getElementById('w-'+a.dataset.w).classList.add('active');
+    });
+  });
+});
+</script>
+</body>
+</html>
