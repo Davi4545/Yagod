@@ -138,12 +138,75 @@ h2.section{text-align:center;color:var(--muted);font-size:13px;letter-spacing:2p
 
 footer{text-align:center;color:var(--muted);font-size:12px;padding:22px;}
 
+
+.avatarBtn{background:none;border:none;padding:0;cursor:pointer;}
+.avatar.guest{opacity:.55;}
+.dropdown{position:absolute;top:52px;left:0;width:280px;background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:0;box-shadow:0 12px 30px rgba(0,0,0,.5);display:none;z-index:30;overflow:hidden;}
+.dropdown.show{display:block;}
+.dropdown .ddHead{padding:18px;text-align:center;border-bottom:1px solid var(--border);}
+.dropdown .ddHead .avatar{width:64px;height:64px;margin:0 auto 8px;}
+.dropdown .ddName{font-weight:800;}
+.dropdown .ddLvl{color:var(--gold);font-size:12px;font-weight:700;margin-top:2px;}
+.dropdown .ddXpBar{height:5px;background:var(--panel2);border-radius:4px;margin:10px 14px 4px;overflow:hidden;}
+.dropdown .ddXpBar i{display:block;height:100%;background:var(--gold);}
+.dropdown .ddXpLabel{font-size:11px;color:var(--muted);padding:0 14px 12px;text-align:center;}
+.dropdown .ddLabel{font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;padding:10px 14px 4px;}
+.dropdown .ddWallet{display:flex;gap:10px;padding:6px 14px 12px;}
+.dropdown .ddWallet .chip{flex:1;background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:8px;text-align:center;font-weight:700;font-size:13px;}
+.dropdown .ddItem{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;border-top:1px solid var(--border);}
+.dropdown .ddItem:hover{background:var(--panel2);}
+.dropdown .ddItem .ic{font-size:17px;width:20px;text-align:center;}
+.dropdown .ddItem .txt{flex:1;}
+.dropdown .ddItem .txt b{display:block;font-size:13px;font-weight:700;}
+.dropdown .ddItem .txt small{color:var(--muted);font-size:11px;}
+.dropdown .ddBadge{background:var(--gold);color:#241a05;font-weight:800;font-size:11px;border-radius:10px;padding:2px 8px;}
+.dropdown .ddFooter{padding:8px 6px;border-top:1px solid var(--border);}
+.dropdown .ddFooter a,.dropdown .ddFooter button{display:flex;align-items:center;gap:8px;width:100%;text-align:left;background:none;border:none;color:var(--text);font-size:14px;padding:10px 10px;cursor:pointer;font-weight:600;border-radius:8px;}
+.dropdown .ddFooter a:hover,.dropdown .ddFooter button:hover{background:var(--panel2);}
+.dropdown .ddFooter .danger{color:var(--danger);}
+.dropdown .guestBox{padding:22px 18px;text-align:center;}
+.dropdown .guestBox .avatar{width:56px;height:56px;margin:0 auto 12px;opacity:.6;}
+.dropdown .guestBox button{width:100%;margin-top:12px;}
+.loginInput{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:var(--panel2);color:var(--text);font-size:14px;margin:12px 0;}
+
+.profileHero{text-align:center;margin-bottom:22px;}
+.profileAvatar{width:110px;height:110px;border-radius:50%;background:conic-gradient(#7cd9ff,#a78bfa,#f0ac3f,#7cd9ff);padding:4px;margin:0 auto 10px;}
+.profileAvatar i{display:block;width:100%;height:100%;border-radius:50%;background:var(--panel2);}
+.lvlBadge{display:inline-block;background:var(--panel2);border:1px solid var(--gold);color:var(--gold);font-weight:800;font-size:12px;padding:3px 12px;border-radius:20px;margin-bottom:8px;}
+.profileHero h1{font-size:28px;margin:6px 0 2px;font-weight:800;color:#c9b3ff;}
+.profileHero .memberline{color:var(--muted);font-size:13px;}
+.xpToNext{color:var(--muted);font-size:13px;margin-top:6px;}
+.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0;}
+.statbox{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center;}
+.statbox .lbl{font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;}
+.statbox .val{font-size:20px;font-weight:800;margin-top:4px;}
+.walletgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:18px;}
+.walletcard{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:16px;}
+.walletcard .lbl{color:var(--muted);font-size:12px;display:flex;justify-content:space-between;align-items:center;}
+.walletcard .val{font-size:24px;font-weight:800;margin-top:6px;}
+.connrow{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
+.connchip{flex:1;min-width:150px;background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:12px 14px;display:flex;align-items:center;gap:10px;}
+.connchip .plico{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;color:#fff;flex-shrink:0;}
+.connchip.twitch .plico{background:#9146ff;}
+.connchip.kick .plico{background:#53fc18;color:#111;}
+.connchip.youtube .plico{background:#ff3b3b;}
+.connchip .info{flex:1;min-width:0;}
+.connchip .info b{display:block;font-size:13px;}
+.connchip .info small{color:var(--muted);font-size:11px;}
+.connchip button{background:var(--panel2);border:1px solid var(--border);color:var(--text);font-size:12px;font-weight:700;padding:6px 12px;border-radius:8px;cursor:pointer;}
+.menu-list button.menuitem{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--panel);border:1px solid var(--border);border-radius:12px;margin-bottom:8px;cursor:pointer;color:var(--text);font-size:14px;font-weight:700;text-align:left;width:100%;}
+.menu-list .ic{font-size:18px;width:24px;}
+.menu-list .sub{color:var(--muted);font-size:12px;font-weight:400;display:block;margin-top:2px;}
+.menu-list .right{margin-left:auto;color:var(--muted);}
 </style>
 </head>
 <body>
 
 <header>
-  <div class="brand"><div class="avatar"><i></i></div></div>
+  <div class="brand" style="position:relative">
+    <button class="avatarBtn" id="avatarBtn"><div class="avatar" id="avatarRing"><i></i></div></button>
+    <div class="dropdown" id="profileDropdown"></div>
+  </div>
   <nav class="mainnav">
     <a href="index.html">Home</a>
     <a href="jogos.html" class="active">Jogos</a>
@@ -218,6 +281,16 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:22px;}
     <div class="cal" id="calGrid"></div>
   </div>
 </div>
+
+<div class="modalbg" id="loginModalBg">
+  <div class="modal" style="max-width:360px">
+    <button class="closeb" id="closeLoginModal">×</button>
+    <h3>Entrar com Twitch</h3>
+    <p class="small">Simulação de login — informe um usuário da Twitch pra criar seu perfil.</p>
+    <input type="text" id="loginHandleInput" class="loginInput" placeholder="seu_usuario_twitch">
+    <button class="cta" id="doLoginBtn" style="width:100%">Entrar</button>
+  </div>
+</div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -241,7 +314,19 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:22px;}
     ],
     streak: 2,
     calDone: [1,2],
-    lastCollect: null
+    lastCollect: null,
+    username: null,
+    premium: false,
+    memberSince: null,
+    watchedHours: 139,
+    positionRank: 313,
+    xpTotal: 24152,
+    xpNext: 24702,
+    connections: {
+      twitch:  { connected: false, handle: null, hours: 0 },
+      kick:    { connected: false, handle: null },
+      youtube: { connected: false, handle: null }
+    }
   };
 
   function load(){
@@ -272,6 +357,10 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:22px;}
       if(ty) ty.textContent = st.ty;
       if(tok) tok.textContent = st.tok;
       if(lvl) lvl.textContent = st.lvl;
+      const ring = document.getElementById('avatarRing');
+      if(ring) ring.classList.toggle('guest', !st.username);
+      this.renderDropdown();
+      if(typeof window.__renderProfilePage === 'function') window.__renderProfilePage();
     },
     RANKING: [
       {pos:1, name:'Draven', lvl:457, ic:'🐉'},
@@ -284,7 +373,104 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:22px;}
       {pos:8, name:'Bram',   lvl:323, ic:'🪓'},
       {pos:9, name:'Nyra',   lvl:322, ic:'✨'},
       {pos:10,name:'Ezra',   lvl:308, ic:'🎯'}
-    ]
+    ],
+    login: function(handle){
+      handle = (handle||'').trim().replace(/^@/,'');
+      if(!handle) return false;
+      const st = this.state;
+      const meses = ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+      const d = new Date();
+      st.username = handle;
+      st.premium = true;
+      st.memberSince = meses[d.getMonth()] + '/' + d.getFullYear();
+      st.connections.twitch = { connected:true, handle: handle, hours: st.watchedHours };
+      this.save();
+      this.renderHeader();
+      return true;
+    },
+    logout: function(){
+      const st = this.state;
+      st.username = null;
+      st.premium = false;
+      st.memberSince = null;
+      st.connections = {
+        twitch:  { connected:false, handle:null, hours:0 },
+        kick:    { connected:false, handle:null },
+        youtube: { connected:false, handle:null }
+      };
+      this.save();
+    },
+    linkPlatform: function(key, label){
+      const handle = window.prompt('Informe seu usuário da ' + label + ':');
+      if(!handle) return;
+      this.state.connections[key] = { connected:true, handle: handle.trim().replace(/^@/,''), hours: 0 };
+      this.save();
+      this.toast(label + ' vinculada com sucesso!');
+      if(typeof window.__renderProfilePage === 'function') window.__renderProfilePage();
+      this.renderDropdown();
+    },
+    renderDropdown: function(){
+      const el = document.getElementById('profileDropdown');
+      if(!el) return;
+      const st = this.state;
+      if(!st.username){
+        el.innerHTML = `
+          <div class="guestBox">
+            <div class="avatar" style="margin:0 auto"><i></i></div>
+            <div style="font-weight:700;margin-top:10px">Você ainda não entrou</div>
+            <div class="small">Entre com sua conta da Twitch pra criar seu perfil.</div>
+            <button class="cta" id="ddLoginBtn">Entrar com Twitch</button>
+          </div>`;
+        const b = document.getElementById('ddLoginBtn');
+        if(b) b.addEventListener('click', ()=>{ el.classList.remove('show'); openLoginModal(); });
+        return;
+      }
+      const pct = Math.min(100, Math.round(st.xpTotal/st.xpNext*100));
+      const pendingMissions = st.missions.filter(m=>m.prog < m.target).length;
+      const today = new Date().toISOString().slice(0,10);
+      const checkinDone = st.lastCollect === today;
+      el.innerHTML = `
+        <div class="ddHead">
+          <div class="avatar"><i></i></div>
+          <div class="ddName">${st.username}</div>
+          <div class="ddLvl">NÍVEL ${st.lvl}</div>
+          <div class="ddXpBar"><i style="width:${pct}%"></i></div>
+          <div class="ddXpLabel">${st.xpTotal.toLocaleString('pt-BR')} / ${st.xpNext.toLocaleString('pt-BR')} XP</div>
+        </div>
+        <div class="ddLabel">Carteira</div>
+        <div class="ddWallet">
+          <div class="chip">🪙 ${st.ty}</div>
+          <div class="chip">🔷 ${st.tok}</div>
+        </div>
+        <div class="ddLabel">Seu dia</div>
+        <div class="ddItem" id="ddCheckin">
+          <span class="ic">🎁</span>
+          <div class="txt"><b>Check-in diário</b><small>${checkinDone ? 'Já resgatado hoje' : 'Disponível agora'}</small></div>
+        </div>
+        <div class="ddItem" id="ddMissions">
+          <span class="ic">🎯</span>
+          <div class="txt"><b>Missões diárias</b><small>${pendingMissions} pendente(s)</small></div>
+          ${pendingMissions>0 ? '<span class="ddBadge">'+pendingMissions+'</span>' : ''}
+        </div>
+        <div class="ddItem" id="ddInventory">
+          <span class="ic">📦</span>
+          <div class="txt"><b>Inventário</b><small>${st.chest} baú(s) para abrir</small></div>
+          ${st.chest>0 ? '<span class="ddBadge">'+st.chest+'</span>' : ''}
+        </div>
+        <div class="ddFooter">
+          <a href="perfil.html">👤 Perfil</a>
+          <button class="danger" id="ddLogout">⎋ Sair</button>
+        </div>
+      `;
+      const ci = document.getElementById('ddCheckin');
+      if(ci) ci.addEventListener('click', ()=>{ el.classList.remove('show'); const mb=document.getElementById('modalBg'); if(mb) mb.classList.add('show'); });
+      const mi = document.getElementById('ddMissions');
+      if(mi) mi.addEventListener('click', ()=>{ window.location.href = 'missoes.html'; });
+      const inv = document.getElementById('ddInventory');
+      if(inv) inv.addEventListener('click', ()=>{ window.location.href = 'index.html#chestBanner'; });
+      const lo = document.getElementById('ddLogout');
+      if(lo) lo.addEventListener('click', ()=>{ this.logout(); this.renderHeader(); this.renderDropdown(); el.classList.remove('show'); window.location.href = 'index.html'; });
+    }
   };
 
   document.addEventListener('DOMContentLoaded', function(){
@@ -316,6 +502,46 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:22px;}
         });
       }
     }
+
+    // dropdown de perfil (abre/fecha)
+    const avatarBtn = document.getElementById('avatarBtn');
+    const dropdownEl = document.getElementById('profileDropdown');
+    if(avatarBtn && dropdownEl){
+      avatarBtn.addEventListener('click', (e)=>{
+        e.stopPropagation();
+        dropdownEl.classList.toggle('show');
+      });
+      document.addEventListener('click', (e)=>{
+        if(!dropdownEl.contains(e.target) && e.target !== avatarBtn){
+          dropdownEl.classList.remove('show');
+        }
+      });
+    }
+
+    // modal de login (Entrar com Twitch)
+    window.openLoginModal = function(){
+      const bg = document.getElementById('loginModalBg');
+      if(bg) bg.classList.add('show');
+      const input = document.getElementById('loginHandleInput');
+      if(input){ input.value=''; input.focus(); }
+    };
+    const loginBg = document.getElementById('loginModalBg');
+    const closeLoginBtn = document.getElementById('closeLoginModal');
+    const doLoginBtn = document.getElementById('doLoginBtn');
+    const loginInput = document.getElementById('loginHandleInput');
+    if(loginBg){
+      if(closeLoginBtn) closeLoginBtn.addEventListener('click', ()=> loginBg.classList.remove('show'));
+      loginBg.addEventListener('click', (e)=>{ if(e.target===loginBg) loginBg.classList.remove('show'); });
+    }
+    function attemptLogin(){
+      const handle = loginInput ? loginInput.value : '';
+      if(!handle || !handle.trim()){ window.YGD.toast('Digite um usuário da Twitch'); return; }
+      window.YGD.login(handle);
+      loginBg.classList.remove('show');
+      window.YGD.toast('Bem-vindo, ' + window.YGD.state.username + '!');
+    }
+    if(doLoginBtn) doLoginBtn.addEventListener('click', attemptLogin);
+    if(loginInput) loginInput.addEventListener('keydown', (e)=>{ if(e.key==='Enter') attemptLogin(); });
   });
 
   function renderCalendar(){
