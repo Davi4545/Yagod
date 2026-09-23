@@ -4,7 +4,141 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Yagod Rewards — Wiki</title>
-<link rel="stylesheet" href="assets/style.css">
+<style>
+:root{
+  --bg:#0b0c0f; --panel:#131519; --panel2:#1a1d23; --border:#262a32;
+  --gold:#f0ac3f; --gold2:#c98a1f; --text:#eef0f3; --muted:#8a90a0;
+  --twitch:#9146ff; --kick:#53fc18; --youtube:#ff3b3b; --green:#3ec97a; --danger:#e0555a;
+}
+*{box-sizing:border-box;}
+html{scroll-padding-top:70px;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;}
+a{color:inherit;text-decoration:none;}
+
+/* header */
+header{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:16px;padding:10px 24px;background:var(--panel);border-bottom:1px solid var(--border);flex-wrap:wrap;}
+.brand{display:flex;align-items:center;gap:10px;}
+.avatar{width:38px;height:38px;border-radius:50%;background:conic-gradient(#7cd9ff,#a78bfa,#f0ac3f,#7cd9ff);padding:2px;}
+.avatar i{display:block;width:100%;height:100%;border-radius:50%;background:var(--panel2);}
+nav.mainnav{display:flex;gap:4px;margin-left:6px;flex-wrap:wrap;}
+nav.mainnav a{padding:9px 16px;border-radius:20px;font-size:14px;font-weight:600;color:var(--muted);}
+nav.mainnav a.active{background:var(--panel2);color:var(--gold);border:1px solid var(--border);}
+.stats{margin-left:auto;display:flex;gap:12px;align-items:center;font-weight:700;font-size:14px;flex-wrap:wrap;}
+.stat{display:flex;align-items:center;gap:6px;background:var(--panel2);padding:6px 12px;border-radius:20px;border:1px solid var(--border);}
+
+main{max-width:1120px;margin:0 auto;padding:26px 18px 70px;}
+
+/* generic */
+.hero{text-align:center;margin-bottom:26px;}
+.hero h1{font-size:clamp(26px,4vw,36px);margin:0 0 6px;font-weight:800;}
+.hero h1 span{color:var(--gold);}
+.hero p{color:var(--muted);margin:0;}
+h2.pagetitle{font-size:30px;font-weight:800;margin:0 0 6px;}
+p.pagesub{color:var(--muted);margin:0 0 26px;}
+
+.banner{display:flex;justify-content:space-between;align-items:center;gap:14px;background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:16px 20px;margin-bottom:14px;flex-wrap:wrap;}
+.banner .info{display:flex;gap:12px;align-items:center;}
+.banner .title{font-weight:700;}
+.banner .sub{color:var(--muted);font-size:13px;}
+.banner.warn{border-color:#4a3413;background:#1b170d;}
+
+button.cta{background:linear-gradient(180deg,var(--gold),var(--gold2));border:none;color:#241a05;font-weight:800;padding:10px 18px;border-radius:10px;cursor:pointer;font-size:14px;}
+button.cta.ghost{background:var(--panel2);color:var(--text);border:1px solid var(--border);}
+button.cta:disabled{opacity:.45;cursor:default;}
+button.cta:active{transform:scale(.97);}
+
+h2.section{text-align:center;color:var(--muted);font-size:13px;letter-spacing:2px;font-weight:700;margin:36px 0 16px;text-transform:uppercase;}
+
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;}
+
+/* home goal cards */
+.card{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:18px;text-align:center;}
+.plat{display:flex;align-items:center;justify-content:center;gap:8px;font-weight:700;margin-bottom:12px;}
+.plat .dot{width:8px;height:8px;border-radius:50%;background:var(--muted);}
+.plat .dot.live{background:var(--green);box-shadow:0 0 6px var(--green);}
+.ring{width:140px;height:140px;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;position:relative;}
+.ring::before{content:"";position:absolute;inset:8px;border-radius:50%;background:var(--panel);}
+.ring b{position:relative;font-size:22px;}
+.ring small{position:absolute;bottom:34px;font-size:10px;color:var(--muted);}
+.chestbtn{background:var(--panel2);border:1px solid var(--border);color:var(--text);padding:8px 16px;border-radius:10px;font-weight:700;cursor:pointer;width:100%;}
+.small{font-size:12px;color:var(--muted);margin-top:8px;}
+
+/* podium / ranking */
+.podium{display:flex;justify-content:center;align-items:flex-end;gap:26px;margin-bottom:24px;flex-wrap:wrap;}
+.podium .p{text-align:center;}
+.podium .av{width:74px;height:74px;border-radius:50%;background:var(--panel2);border:3px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 6px;}
+.podium .p1 .av{width:96px;height:96px;border-color:var(--gold);}
+.podium .p2 .av{border-color:#7cb0ff;}
+.podium .p3 .av{border-color:#ff9f5c;}
+.podium .badge{font-size:11px;color:var(--muted);}
+.rank{display:flex;flex-direction:column;gap:10px;}
+.rankrow{display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:10px 16px;}
+.rankrow .pos{width:26px;font-weight:800;color:var(--muted);}
+.rankrow .name{flex:1;font-weight:700;}
+.rankrow .lvl{color:var(--muted);font-size:13px;}
+
+/* missions */
+.missions{display:flex;flex-direction:column;gap:12px;}
+.mission{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.mission .rarity{font-size:10px;font-weight:800;padding:3px 8px;border-radius:8px;text-transform:uppercase;}
+.rarity.comum{background:#2a3040;color:#9db1e8;}
+.rarity.incomum{background:#1f3d2c;color:#5fd68a;}
+.rarity.raro{background:#2c3d5a;color:#6fb4ff;}
+.rarity.epico{background:#3a2a52;color:#c48bff;}
+.rarity.lendario{background:#4a3413;color:var(--gold);}
+.mission .body{flex:1;min-width:180px;}
+.mission .name{font-weight:700;margin-bottom:6px;}
+.bar{height:8px;border-radius:6px;background:var(--panel2);overflow:hidden;}
+.bar i{display:block;height:100%;background:var(--gold);}
+
+/* shop / games / sorteios cards */
+.shopcard,.gamecard,.sorteiocard{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:18px;text-align:center;}
+.shopcard .ico,.gamecard .ico{font-size:34px;margin-bottom:8px;}
+.shopcard .name,.gamecard .name{font-weight:700;margin-bottom:2px;}
+.shopcard .price{color:var(--gold);font-weight:800;margin:10px 0;}
+.gamecard{text-align:left;}
+.tagrow{display:flex;gap:8px;margin-bottom:10px;}
+.tag{font-size:10px;font-weight:800;padding:3px 8px;border-radius:8px;background:var(--panel2);color:var(--muted);text-transform:uppercase;}
+.tag.live{background:#3a1414;color:#ff7676;}
+
+.sorteiocard{text-align:left;}
+.sorteiocard .badge-top{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:10px;}
+.sorteiocard img.prize,.sorteiocard .prizebox{font-size:44px;text-align:center;margin:14px 0;}
+.metarow{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);border-top:1px solid var(--border);padding-top:10px;margin-top:10px;}
+.metarow b{display:block;color:var(--text);font-size:14px;}
+
+/* wiki */
+.wikiwrap{display:flex;gap:28px;align-items:flex-start;}
+.wikinav{width:230px;flex-shrink:0;display:flex;flex-direction:column;gap:2px;position:sticky;top:80px;}
+.wikinav a{padding:9px 12px;border-radius:8px;color:var(--muted);font-size:14px;}
+.wikinav a.active{background:var(--panel2);color:var(--gold);font-weight:700;}
+.wikicontent{flex:1;min-width:0;}
+.wikipane{display:none;}
+.wikipane.active{display:block;}
+.wikipane h3{font-size:24px;margin-top:0;}
+.callout{background:var(--panel2);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:8px;padding:14px 16px;margin:16px 0;}
+.wikipane ul{padding-left:20px;}
+.wikipane li{margin-bottom:6px;}
+
+/* modal */
+.modalbg{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:50;padding:16px;}
+.modalbg.show{display:flex;}
+.modal{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:20px;max-width:520px;width:100%;max-height:85vh;overflow:auto;}
+.streakbox{display:flex;justify-content:space-between;align-items:center;background:var(--panel2);border-radius:10px;padding:12px 16px;margin-bottom:14px;}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;}
+.day{background:var(--panel2);border:1px solid var(--border);border-radius:8px;padding:6px 2px;text-align:center;font-size:10px;}
+.day.done{border-color:var(--gold);color:var(--gold);}
+.day.today{outline:2px solid var(--gold);}
+.day b{display:block;font-size:12px;}
+.closeb{float:right;background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;}
+
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--panel2);border:1px solid var(--gold);padding:10px 18px;border-radius:10px;font-weight:700;opacity:0;transition:opacity .3s;pointer-events:none;z-index:60;}
+.toast.show{opacity:1;}
+
+footer{text-align:center;color:var(--muted);font-size:12px;padding:22px;}
+
+</style>
 </head>
 <body>
 
@@ -146,7 +280,122 @@
 </div>
 <div class="toast" id="toast"></div>
 
-<script src="assets/app.js"></script>
+<script>
+(function(){
+  const KEY = 'yagod_state_v1';
+  const DEFAULT_STATE = {
+    ty: 9,
+    tok: 1000,
+    xp: 0,
+    lvl: 1,
+    chest: 1,
+    goals: {
+      twitch:  { min: 20, next: 120 },
+      kick:    { min: 0,  next: 120 },
+      youtube: { min: 0,  next: 120 }
+    },
+    missions: [
+      { name: 'Jogue Yagod por 30 min', rarity: 'comum',   prog: 0, target: 30, reward: '50 Yagod Coins' },
+      { name: 'Vença 1 partida ranqueada', rarity: 'raro',   prog: 0, target: 1,  reward: '1 Chave de Rubi' },
+      { name: 'Abra 2 baús', rarity: 'incomum', prog: 0, target: 2,  reward: '100 Tokens' }
+    ],
+    streak: 2,
+    calDone: [1,2],
+    lastCollect: null
+  };
+
+  function load(){
+    try{
+      const raw = localStorage.getItem(KEY);
+      if(!raw) return JSON.parse(JSON.stringify(DEFAULT_STATE));
+      return Object.assign(JSON.parse(JSON.stringify(DEFAULT_STATE)), JSON.parse(raw));
+    }catch(e){ return JSON.parse(JSON.stringify(DEFAULT_STATE)); }
+  }
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(window.YGD.state)); }catch(e){} }
+
+  window.YGD = {
+    state: load(),
+    save: save,
+    toast: function(msg){
+      const t = document.getElementById('toast');
+      if(!t) return;
+      t.textContent = msg;
+      t.classList.add('show');
+      clearTimeout(window.__ygdToastTimer);
+      window.__ygdToastTimer = setTimeout(()=>t.classList.remove('show'), 1800);
+    },
+    renderHeader: function(){
+      const st = this.state;
+      const ty = document.getElementById('tyCount');
+      const tok = document.getElementById('tokCount');
+      const lvl = document.getElementById('lvlCount');
+      if(ty) ty.textContent = st.ty;
+      if(tok) tok.textContent = st.tok;
+      if(lvl) lvl.textContent = st.lvl;
+    },
+    RANKING: [
+      {pos:1, name:'Draven', lvl:457, ic:'🐉'},
+      {pos:2, name:'Kael',   lvl:437, ic:'🛡️'},
+      {pos:3, name:'Sylas',  lvl:400, ic:'🏹'},
+      {pos:4, name:'Mira',   lvl:335, ic:'🗡️'},
+      {pos:5, name:'Orin',   lvl:335, ic:'🔥'},
+      {pos:6, name:'Vex',    lvl:332, ic:'⚔️'},
+      {pos:7, name:'Talia',  lvl:323, ic:'🌙'},
+      {pos:8, name:'Bram',   lvl:323, ic:'🪓'},
+      {pos:9, name:'Nyra',   lvl:322, ic:'✨'},
+      {pos:10,name:'Ezra',   lvl:308, ic:'🎯'}
+    ]
+  };
+
+  document.addEventListener('DOMContentLoaded', function(){
+    window.YGD.renderHeader();
+
+    // monthly reward modal (present in every page via header click)
+    const trigger = document.getElementById('openMonthly');
+    const modalBg = document.getElementById('modalBg');
+    if(trigger && modalBg){
+      trigger.addEventListener('click', ()=> modalBg.classList.add('show'));
+      const closeb = document.getElementById('closeModal');
+      if(closeb) closeb.addEventListener('click', ()=> modalBg.classList.remove('show'));
+      modalBg.addEventListener('click', (e)=>{ if(e.target === modalBg) modalBg.classList.remove('show'); });
+      renderCalendar();
+      const collectBtn = document.getElementById('collectBtn');
+      if(collectBtn){
+        collectBtn.addEventListener('click', ()=>{
+          const st = window.YGD.state;
+          const today = new Date().toISOString().slice(0,10);
+          if(st.lastCollect === today){ window.YGD.toast('Já coletado hoje'); return; }
+          st.streak += 1;
+          st.calDone.push(st.streak);
+          st.lastCollect = today;
+          st.ty += 1;
+          window.YGD.save();
+          window.YGD.renderHeader();
+          renderCalendar();
+          window.YGD.toast('Recompensa coletada! +1 Yagod Coin');
+        });
+      }
+    }
+  });
+
+  function renderCalendar(){
+    const st = window.YGD.state;
+    const streakVal = document.getElementById('streakVal');
+    if(streakVal) streakVal.textContent = st.streak + ' dias';
+    const grid = document.getElementById('calGrid');
+    if(!grid) return;
+    grid.innerHTML = '';
+    for(let d=1; d<=28; d++){
+      const done = st.calDone.includes(d);
+      const div = document.createElement('div');
+      div.className = 'day ' + (done?'done':'') + (d===st.streak+1?' today':'');
+      div.innerHTML = '<b>D'+d+'</b>🎁x1';
+      grid.appendChild(div);
+    }
+  }
+})();
+
+</script>
 <script>
 document.addEventListener('DOMContentLoaded', function(){
   document.querySelectorAll('#wikinav a').forEach(a=>{
