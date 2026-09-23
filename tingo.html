@@ -158,14 +158,26 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:22px;}
   </div>
 </header>
 
+<style>
+.bingoGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;max-width:340px;margin:18px auto;}
+.bingoCell{aspect-ratio:1;display:flex;align-items:center;justify-content:center;background:var(--panel2);border:1px solid var(--border);border-radius:10px;font-weight:800;font-size:18px;transition:.15s;}
+.bingoCell.marked{background:linear-gradient(180deg,var(--gold),var(--gold2));color:#241a05;border-color:var(--gold);}
+.drawnBall{width:90px;height:90px;border-radius:50%;background:linear-gradient(180deg,var(--gold),var(--gold2));color:#241a05;display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:800;margin:0 auto 14px;}
+.drawnHistory{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;max-width:420px;margin:0 auto;}
+.drawnHistory span{background:var(--panel2);border:1px solid var(--border);border-radius:8px;padding:4px 9px;font-size:12px;font-weight:700;color:var(--muted);}
+.drawnHistory span.hit{color:var(--gold);border-color:var(--gold);}
+</style>
+
 <main>
   <div style="display:flex;gap:22px;flex-wrap:wrap">
     <div style="flex:1;min-width:280px;display:flex;flex-direction:column;gap:16px">
       <div class="card">
-        <div class="tagrow" style="justify-content:center"><span class="tag">Premium</span></div>
-        <div style="font-weight:700;margin-bottom:4px">Tingo Automático</div>
-        <div class="small">Cartelas geradas e cartela cheia resgatada automaticamente.</div>
-        <div style="margin-top:10px;color:var(--green);font-weight:700;font-size:13px">● Auto ativo</div>
+        <div class="tagrow" style="justify-content:center"><span class="tag">Bingo</span></div>
+        <div style="font-weight:700;margin-bottom:4px">Como funciona</div>
+        <div class="small">Cartela com 25 números de 1 a 70. A cada sorteio, um número novo é revelado — se estiver na sua cartela, ele marca sozinho. Feche a cartela inteira pra gritar TINGO!</div>
+        <label style="display:flex;align-items:center;gap:8px;margin-top:12px;font-size:13px;cursor:pointer">
+          <input type="checkbox" id="autoToggle"> Sorteio automático (a cada 2s)
+        </label>
       </div>
 
       <div class="card" style="text-align:left">
@@ -175,9 +187,20 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:22px;}
     </div>
 
     <div style="flex:2;min-width:280px" class="card">
-      <div style="color:var(--muted);font-size:12px;letter-spacing:1px">AGUARDANDO O PRÓXIMO LOBBY</div>
-      <h1 style="font-size:42px;letter-spacing:6px;margin:20px 0">T·I·N·G·O</h1>
-      <p class="small">O lobby abre quando a live começa. Fique de olho no chat — a cartela é gerada aqui.</p>
+      <div style="color:var(--muted);font-size:12px;letter-spacing:1px" id="statusLine">AGUARDANDO SORTEIO</div>
+      <h1 style="font-size:42px;letter-spacing:6px;margin:14px 0 4px">T·I·N·G·O</h1>
+
+      <div class="drawnBall" id="ballDisplay">--</div>
+
+      <div style="display:flex;gap:10px;justify-content:center;margin-bottom:18px;flex-wrap:wrap">
+        <button class="cta" id="drawBtn">Sortear número</button>
+        <button class="cta ghost" id="newCardBtn">Nova cartela</button>
+      </div>
+
+      <div class="bingoGrid" id="bingoGrid"></div>
+
+      <div class="small" style="text-align:center;margin-bottom:8px">Números sorteados (<span id="drawnCount">0</span>/70)</div>
+      <div class="drawnHistory" id="drawnHistory"></div>
     </div>
   </div>
 </main>
@@ -212,7 +235,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:22px;}
       youtube: { min: 0,  next: 120 }
     },
     missions: [
-      { name: 'Jogue Yagod por 30 min', rarity: 'comum',   prog: 0, target: 30, reward: '50 Yagod Coins' },
+      { name: 'Jogue Yagod por 30 min', rarity: 'comum',   prog: 0, target: 30, reward: '50 Tyron Coins' },
       { name: 'Vença 1 partida ranqueada', rarity: 'raro',   prog: 0, target: 1,  reward: '1 Chave de Rubi' },
       { name: 'Abra 2 baús', rarity: 'incomum', prog: 0, target: 2,  reward: '100 Tokens' }
     ],
@@ -289,7 +312,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:22px;}
           window.YGD.save();
           window.YGD.renderHeader();
           renderCalendar();
-          window.YGD.toast('Recompensa coletada! +1 Yagod Coin');
+          window.YGD.toast('Recompensa coletada! +1 Tyron Coin');
         });
       }
     }
@@ -322,6 +345,112 @@ document.addEventListener('DOMContentLoaded', function(){
     div.innerHTML = `<span class="pos">${r.pos}º</span><span class="name">${r.ic} ${r.name}</span><span class="lvl">${(500-r.pos*15)} pts</span>`;
     wrap.appendChild(div);
   });
+
+  // ---- BINGO (Tingo) ----
+  const MAX_NUM = 70;
+  const CARD_SIZE = 25;
+  let card = [];
+  let marked = [];
+  let pool = [];
+  let drawnHistory = [];
+  let finished = false;
+  let autoTimer = null;
+
+  function shuffle(arr){
+    for(let i=arr.length-1; i>0; i--){
+      const j = Math.floor(Math.random()*(i+1));
+      [arr[i],arr[j]] = [arr[j],arr[i]];
+    }
+    return arr;
+  }
+
+  function newCard(){
+    const all = Array.from({length:MAX_NUM}, (_,i)=>i+1);
+    card = shuffle(all).slice(0, CARD_SIZE);
+    marked = new Array(CARD_SIZE).fill(false);
+    pool = shuffle(Array.from({length:MAX_NUM}, (_,i)=>i+1));
+    drawnHistory = [];
+    finished = false;
+    stopAuto();
+    document.getElementById('autoToggle').checked = false;
+    document.getElementById('ballDisplay').textContent = '--';
+    document.getElementById('statusLine').textContent = 'AGUARDANDO SORTEIO';
+    document.getElementById('drawBtn').disabled = false;
+    renderCard();
+    renderHistory();
+  }
+
+  function renderCard(){
+    const grid = document.getElementById('bingoGrid');
+    grid.innerHTML = '';
+    card.forEach((num, i)=>{
+      const cell = document.createElement('div');
+      cell.className = 'bingoCell' + (marked[i] ? ' marked' : '');
+      cell.textContent = num;
+      grid.appendChild(cell);
+    });
+  }
+
+  function renderHistory(){
+    document.getElementById('drawnCount').textContent = drawnHistory.length;
+    const wrap = document.getElementById('drawnHistory');
+    wrap.innerHTML = '';
+    drawnHistory.slice().reverse().forEach(n=>{
+      const span = document.createElement('span');
+      span.textContent = n;
+      if(card.includes(n)) span.classList.add('hit');
+      wrap.appendChild(span);
+    });
+  }
+
+  function draw(){
+    if(finished || pool.length === 0) return;
+    const num = pool.pop();
+    drawnHistory.push(num);
+    document.getElementById('ballDisplay').textContent = num;
+
+    const idx = card.indexOf(num);
+    if(idx !== -1){
+      marked[idx] = true;
+      renderCard();
+      YGD.toast('Número '+num+' bateu na sua cartela!');
+    }
+    renderHistory();
+
+    if(marked.every(Boolean)){
+      finished = true;
+      stopAuto();
+      document.getElementById('statusLine').textContent = 'TINGO! CARTELA COMPLETA';
+      document.getElementById('drawBtn').disabled = true;
+      const reward = 5;
+      YGD.state.ty += reward;
+      YGD.save();
+      YGD.renderHeader();
+      YGD.toast('TINGO! Cartela completa — +'+reward+' Tyron Coins');
+    } else if(pool.length === 0){
+      document.getElementById('statusLine').textContent = 'SORTEIO ENCERRADO — SEM TINGO';
+      document.getElementById('drawBtn').disabled = true;
+      stopAuto();
+    } else {
+      document.getElementById('statusLine').textContent = 'SORTEIO EM ANDAMENTO';
+    }
+  }
+
+  function stopAuto(){
+    if(autoTimer){ clearInterval(autoTimer); autoTimer = null; }
+  }
+
+  document.getElementById('drawBtn').addEventListener('click', draw);
+  document.getElementById('newCardBtn').addEventListener('click', newCard);
+  document.getElementById('autoToggle').addEventListener('change', (e)=>{
+    if(e.target.checked){
+      if(!finished) autoTimer = setInterval(draw, 2000);
+    } else {
+      stopAuto();
+    }
+  });
+
+  newCard();
 });
 </script>
 </body>

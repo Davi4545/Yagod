@@ -160,13 +160,13 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:22px;}
 
 <main>
   <h2 class="pagetitle">Loja</h2>
-  <p class="pagesub">Utilidades e itens adquiridos com Tokens ou Yagod Coins.</p>
+  <p class="pagesub">Utilidades e itens adquiridos com Tokens ou Tyron Coins.</p>
 
   <h2 class="section" style="margin-top:0">Exchange</h2>
   <div class="grid3">
     <div class="shopcard">
       <div class="ico">🔄</div>
-      <div class="name">1 Yagod Coin → 1000 Tokens</div>
+      <div class="name">1 Tyron Coin → 1000 Tokens</div>
       <button class="cta" id="exchangeBtn" style="margin-top:12px;width:100%">Trocar agora</button>
     </div>
   </div>
@@ -179,16 +179,16 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:22px;}
 
   <h2 class="section">Chaves</h2>
   <div class="grid3">
-    <div class="shopcard"><div class="ico">🗝️</div><div class="name">Chave de Ferro</div><div class="price">1 Yagod Coin</div><button class="cta buy" data-cost="1" data-cur="ty" style="width:100%">Comprar Chave</button></div>
-    <div class="shopcard"><div class="ico">🗝️</div><div class="name">Chave de Rubi</div><div class="price">2 Yagod Coins</div><button class="cta buy" data-cost="2" data-cur="ty" style="width:100%">Comprar Chave</button></div>
-    <div class="shopcard"><div class="ico">🗝️</div><div class="name">Chave Dracônica</div><div class="price">4 Yagod Coins</div><button class="cta buy" data-cost="4" data-cur="ty" style="width:100%">Comprar Chave</button></div>
+    <div class="shopcard"><div class="ico">🗝️</div><div class="name">Chave de Ferro</div><div class="price">1 Tyron Coin</div><button class="cta buy" data-cost="1" data-cur="ty" style="width:100%">Comprar Chave</button></div>
+    <div class="shopcard"><div class="ico">🗝️</div><div class="name">Chave de Rubi</div><div class="price">2 Tyron Coins</div><button class="cta buy" data-cost="2" data-cur="ty" style="width:100%">Comprar Chave</button></div>
+    <div class="shopcard"><div class="ico">🗝️</div><div class="name">Chave Dracônica</div><div class="price">4 Tyron Coins</div><button class="cta buy" data-cost="4" data-cur="ty" style="width:100%">Comprar Chave</button></div>
   </div>
 
   <h2 class="section">Baús</h2>
   <div class="grid3">
-    <div class="shopcard"><div class="ico">📦</div><div class="name">Baú Elite</div><div class="small">Nível mínimo: 100</div><div class="price">2 Yagod Coins</div><button class="cta buy" data-cost="2" data-cur="ty" style="width:100%">Comprar Baú</button></div>
-    <div class="shopcard"><div class="ico">🎒</div><div class="name">Baú Heroico</div><div class="small">Requer Nível 150</div><div class="price">4 Yagod Coins</div><button class="cta ghost" disabled style="width:100%">Requer Nível 150</button></div>
-    <div class="shopcard"><div class="ico">🪵</div><div class="name">Baú Reforçado</div><div class="small">Nível mínimo: 50</div><div class="price">1 Yagod Coin</div><button class="cta buy" data-cost="1" data-cur="ty" style="width:100%">Comprar Baú</button></div>
+    <div class="shopcard"><div class="ico">📦</div><div class="name">Baú Elite</div><div class="small">Nível mínimo: 100</div><div class="price">2 Tyron Coins</div><button class="cta buy" data-cost="2" data-cur="ty" style="width:100%">Comprar Baú</button></div>
+    <div class="shopcard"><div class="ico">🎒</div><div class="name">Baú Heroico</div><div class="small">Requer Nível 150</div><div class="price">4 Tyron Coins</div><button class="cta ghost" disabled style="width:100%">Requer Nível 150</button></div>
+    <div class="shopcard"><div class="ico">🪵</div><div class="name">Baú Reforçado</div><div class="small">Nível mínimo: 50</div><div class="price">1 Tyron Coin</div><button class="cta buy" data-cost="1" data-cur="ty" style="width:100%">Comprar Baú</button></div>
   </div>
 
   <h2 class="section">Itens</h2>
@@ -227,7 +227,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:22px;}
       youtube: { min: 0,  next: 120 }
     },
     missions: [
-      { name: 'Jogue Yagod por 30 min', rarity: 'comum',   prog: 0, target: 30, reward: '50 Yagod Coins' },
+      { name: 'Jogue Yagod por 30 min', rarity: 'comum',   prog: 0, target: 30, reward: '50 Tyron Coins' },
       { name: 'Vença 1 partida ranqueada', rarity: 'raro',   prog: 0, target: 1,  reward: '1 Chave de Rubi' },
       { name: 'Abra 2 baús', rarity: 'incomum', prog: 0, target: 2,  reward: '100 Tokens' }
     ],
@@ -304,7 +304,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:22px;}
           window.YGD.save();
           window.YGD.renderHeader();
           renderCalendar();
-          window.YGD.toast('Recompensa coletada! +1 Yagod Coin');
+          window.YGD.toast('Recompensa coletada! +1 Tyron Coin');
         });
       }
     }
@@ -332,7 +332,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:22px;}
 document.addEventListener('DOMContentLoaded', function(){
   document.getElementById('exchangeBtn').addEventListener('click', ()=>{
     const st = YGD.state;
-    if(st.ty < 1){ YGD.toast('Você precisa de 1 Yagod Coin'); return; }
+    if(st.ty < 1){ YGD.toast('Você precisa de 1 Tyron Coin'); return; }
     st.ty -= 1; st.tok += 1000;
     YGD.save(); YGD.renderHeader();
     YGD.toast('Trocado! +1000 Tokens');
